@@ -14,8 +14,8 @@
 
 ROOT_DIR=$(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 ABS_BUILD_PATH=$(ROOT_DIR)/build
-BSP=xilinx-k26-starterkit-v2021.1-final.bsp
-PETALINUX_PROJ_NAME=xilinx-k26-starterkit-2021.1
+BSP=xilinx-k26-som-v2021.2-final.bsp
+PETALINUX_PROJ_NAME=xilinx-k26-som-2021.2
 PETALINUX_DIR=$(ABS_BUILD_PATH)/$(PETALINUX_PROJ_NAME)
 BD_TCL=system_step0.tcl
 ABS_BD_TCL=$(ROOT_DIR)/$(BD_TCL)
@@ -32,7 +32,7 @@ $(BSP):
 ifneq (,$(wildcard $(BSP)))
 	@echo "INFO: BSP found. Start buliding software components."
 else
-	@echo "ERROR: Please download KV260 Starter Kit BSP from https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM to step2_petalinux directory."
+	@echo "ERROR: Please download KV260 Starter Kit BSP from https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools/2021-2.html to step2_petalinux directory."
 	exit
 endif
 
@@ -41,20 +41,20 @@ get_xsa:
 
 
 dtg:
-	git clone https://github.com/Xilinx/device-tree-xlnx.git -b xlnx_rel_v2021.1 dtg
+	git clone https://github.com/Xilinx/device-tree-xlnx.git -b xlnx_rel_v2021.2 dtg
 
 
 dt: dt_output/pl.dtsi
 
 dt_output/pl.dtsi: dtg
-	@echo "INFO: Generating device tree from XSA" 
+	@echo "INFO: Generating device tree from XSA"
 	xsct gen_dt.tcl && rm psu_*
 
 # Compile dt overlay for PL
 dtbo: dt_output/pl.dtsi
 	sed -i 's/firmware-name = "kv260_custom_platform.bit.bin"/firmware-name = "vadd.bit.bin"/g' dt_output/pl.dtsi
 	dtc -@ -O dtb -o dt_output/pl.dtbo dt_output/pl.dtsi
-	@echo	
+	@echo
 	@echo "INFO: Device tree generated in dt_output directory"
 
 

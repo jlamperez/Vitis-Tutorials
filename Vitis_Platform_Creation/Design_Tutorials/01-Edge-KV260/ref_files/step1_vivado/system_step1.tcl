@@ -33,7 +33,7 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2021.1
+set scripts_vivado_version 2021.2
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -57,8 +57,8 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
    create_project project_1 myproj -part xck26-sfvc784-2LV-c
-   set_property board_part xilinx.com:k26c:part0:1.1 [current_project]
-   set_property board_connections {som240_1_connector xilinx.com:som240:som240_1_connector:1.0} [current_project]
+   set_property board_part xilinx.com:kv260_som:part0:1.2 [current_project]
+   set_property board_connections {som240_1_connector xilinx.com:kv260_carrier:som240_1_connector:1.2} [current_project]
 }
 
 

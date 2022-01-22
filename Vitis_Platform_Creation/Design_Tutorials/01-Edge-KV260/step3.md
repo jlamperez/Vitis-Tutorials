@@ -16,7 +16,7 @@
 
 <table class="sphinxhide" width="100%">
  <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>2021.1 Vitis™ Platform Creation Tutorials</h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>2021.2 Vitis™ Platform Creation Tutorials</h1>
     <a href="https://www.xilinx.com/products/design-tools/vitis.html">See Vitis™ Development Environment on xilinx.com</br></a>
     </td>
  </tr>
@@ -26,7 +26,7 @@
 
 ## Prepare Files for Platform Packaging
 
-1. We would store all the necessary files for Vitis platform creation flow. Here we name it `kv260_custom_pkg `. Then we create a `pfm` folder inside to hold platform creation source components. 
+1. We would store all the necessary files for Vitis platform creation flow. Here we name it `kv260_custom_pkg `. Then we create a `pfm` folder inside to hold platform creation source components.
 
    ```bash
    mkdir kv260_custom_pkg
@@ -84,7 +84,7 @@
 
    > Note: These files are the sources of creating BOOT.BIN. They are required for the Vitis workflow but since KV260 Starter Kit boot components are fixed in the QSPI Flash, these files will not be used in our flow.
 
-5. Prepare **sd_dir** directory. 
+5. Prepare **sd_dir** directory.
 
    Contents in this directory will be packaged to FAT32 partition of sd_card.img by v++ package tool. Usually we will store boot.scr and system.dtb in this directory. Since KV260 workflow doesn't program SD Card, we can skip adding contents to this directory. Please just leave it empty.
 

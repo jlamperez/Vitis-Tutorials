@@ -16,7 +16,7 @@
 
 <table class="sphinxhide" width="100%">
  <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>2021.1 Vitis™ Platform Creation Tutorials</h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>2021.2 Vitis™ Platform Creation Tutorials</h1>
     <a href="https://www.xilinx.com/products/design-tools/vitis.html">See Vitis™ Development Environment on xilinx.com</br></a>
     </td>
  </tr>
@@ -151,7 +151,7 @@ We will add the **Clocking Wizard** to the block diagram and enable clock signal
 
 ### Add Interrupt Support
 
-V++ linker can automatically link the interrupt signals between kernel and platform. The available interrupt signals in the platform are exported by **PFM.IRQ** property. 
+V++ linker can automatically link the interrupt signals between kernel and platform. The available interrupt signals in the platform are exported by **PFM.IRQ** property.
 
 For simple designs, interrupt signals can be sourced by processor's **pl_ps_irq**. The limitation is that it can only supply maximum 16 interrupt signals. To supply more interrupt signals, we can use **AXI Interrupt Controller**. We will enable **AXI HPM0 LPD** to control the **AXI Interrupt Controller**, add the **AXI Interrupt Controller** and enable interrupt signals for **PFM.IRQ**. Here are the detailed steps.
 
@@ -248,7 +248,7 @@ For simple designs, interrupt signals can be sourced by processor's **pl_ps_irq*
 
    ```bash
    CRITICAL WARNING: [BD 41-759] The input pins (listed below) are either not connected or do not have a source port, and they do not have a tie-off specified. These pins are tied-off to all 0's to avoid error in Implementation flow.
-   Please check your design and connect them as needed: 
+   Please check your design and connect them as needed:
    /axi_intc_0/intr
    ```
 
@@ -279,9 +279,9 @@ For simple designs, interrupt signals can be sourced by processor's **pl_ps_irq*
      - Board: kv260
      - Version: 0.0
      - Description: This platform provides high PS DDR bandwidth and three clocks: 100MHz, 200MHz and 400MHz.
-   - Fill in XSA file name: **kv260_custom_platform** and keep the export directory as default. 
-   - Click **Finish**. 
-   - **kv260_custom_platform.xsa** will be generated. The export path is reported in the Tcl console. 
+   - Fill in XSA file name: **kv260_custom_platform** and keep the export directory as default.
+   - Click **Finish**.
+   - **kv260_custom_platform.xsa** will be generated. The export path is reported in the Tcl console.
 
    >Note: We enable Include Bitstream to fulfill the requirement of the fpga-manager-util package in PetaLinux.
 

@@ -16,7 +16,7 @@
 
 <table class="sphinxhide" width="100%">
  <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>2021.1 Vitis™ Platform Creation Tutorials</h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>2021.2 Vitis™ Platform Creation Tutorials</h1>
     <a href="https://www.xilinx.com/products/design-tools/vitis.html">See Vitis™ Development Environment on xilinx.com</br></a>
     </td>
  </tr>
@@ -25,10 +25,16 @@
 # Step 4: Test the Platform
 
 - [Step 4: Test the Platform](#step-4-test-the-platform)
+  - [IMPORTANT NOTE](#important-note)
   - [Test 1: Read Platform Info](#test-1-read-platform-info)
     - [Test 2: Run Vector Addition Application](#test-2-run-vector-addition-application)
     - [Congratulations](#congratulations)
     - [Fast Track](#fast-track)
+
+## IMPORTANT NOTE
+
+**Due to the year 2022, HLS build fails when generating a timestamp when using Makefile.
+You can use faketime as explained in [the next forum post](https://support.xilinx.com/s/question/0D52E00006uxy49SAA/vivado-fails-to-export-ips-with-the-error-message-bad-lexical-cast-source-type-value-could-not-be-interpreted-as-target?language=en_US) to solve this problem.**
 
 ## Test 1: Read Platform Info
 
@@ -36,7 +42,7 @@ With Vitis environment setup, **platforminfo** tool can report XPFM platform inf
 
 <details>
 
-<summary><strong>Click for detailed logs</strong></summary>  
+<summary><strong>Click for detailed logs</strong></summary>
 
 ```bash
 # in kv260_custom_pkg directory
@@ -46,9 +52,9 @@ Basic Platform Information
 ==========================
 Platform:           kv260_custom_platform
 File:               <your path to>/kv260_custom_platform.xpfm
-Description:        
+Description:
 A custom platform KV260 platform
-    
+
 
 =====================================
 Hardware Platform (Shell) Information
@@ -106,16 +112,16 @@ System Configurations:
     Processor Group OS Name:   linux
   System Config Boot Images:
     Boot Image Name:           standard
-    Boot Image Type:           
+    Boot Image Type:
     Boot Image BIF:            kv260_custom_platform/boot/linux.bif
     Boot Image Data:           kv260_custom_platform/xrt/image
     Boot Image Boot Mode:      sd
-    Boot Image RootFileSystem: 
+    Boot Image RootFileSystem:
     Boot Image Mount Path:     /mnt
     Boot Image Read Me:        kv260_custom_platform/boot/generic.readme
     Boot Image QEMU Args:      kv260_custom_platform/qemu/pmu_args.txt:kv260_custom_platform/qemu/qemu_args.txt
-    Boot Image QEMU Boot:      
-    Boot Image QEMU Dev Tree:  
+    Boot Image QEMU Boot:
+    Boot Image QEMU Dev Tree:
 Supported Runtimes:
   Runtime: OpenCL
 ```
@@ -135,7 +141,7 @@ Vector addition is the simplest acceleration PL kernel. Vitis can create this ap
    - Click **Next**
    - Select **kv260_custom** as platform, click **Next**.
    - Name the project **vadd**, click **Next**.
-   - Set Domain to **linux on psu_cortexa53**, 
+   - Set Domain to **linux on psu_cortexa53**,
    - Set **Sys_root path** to ```<full_pathname_to_kv260_custom_pkg>/sysroots/cortexa72-cortexa53-xilinx-linux```(as you created by running **sdk.sh**).
    - Set **Root FS** to rootfs.ext4 in `kv260_custom_plnx/images/linux` directory, which was generated in Step 2.
    - Set **Kernel Image** to Image in `kv260_custom_plnx/images/linux` directory. Click **Next**.
@@ -154,7 +160,7 @@ Vector addition is the simplest acceleration PL kernel. Vitis can create this ap
   > Note: KV260 Platform doesn't support emulation.
 
   > Note: Sysroot for application project is required for host application cross-compilation. Linux kernel image and rootfs are optional in this tutorial because we will use the pre-installed Linux kernel and rootfs of KV260 Starter Kit. It's still beneficial adding Kernel Image and rootfs information when creating the application project because the v++ package step can complete with these files when building the system project. If you skip adding Image and rootfs, you can build host application and hw_link component seperatedly. The required files will still be generated.
-   
+
 
 2. Prepare the files to transfer to the board
 

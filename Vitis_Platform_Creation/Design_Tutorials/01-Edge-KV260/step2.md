@@ -19,7 +19,7 @@
 
 <table class="sphinxhide" width="100%">
  <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>2021.1 Vitis™ Platform Creation Tutorials</h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>2021.2 Vitis™ Platform Creation Tutorials</h1>
     <a href="https://www.xilinx.com/products/design-tools/vitis.html">See Vitis™ Development Environment on xilinx.com</br></a>
     </td>
  </tr>
@@ -36,7 +36,7 @@ KV260 provides an off-the-shelf boot image and has its enhanced boot sequence. S
 
 1. Check [Kria K26 SOM wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM). Download the **Starter Kit SOM BSP** that matches your tool version under **PetaLinux Board Support Package** section.
 
-    For example, https://www.xilinx.com/member/forms/download/xef.html?filename=xilinx-k26-starterkit-v2021.1-final.bsp
+    For example, https://www.xilinx.com/member/forms/download/xef.html?filename=xilinx-k26-som-v2021.2-final.bsp
 
     Save it to your working directory.
 
@@ -46,21 +46,15 @@ KV260 provides an off-the-shelf boot image and has its enhanced boot sequence. S
     source <petaLinux_tool_install_dir>/settings.sh
     ```
 
-3. Update PetaLinux eSDK to enable the recipes needed by the Starter Kit SOM BSP.
+3. Create PetaLinux with the Starter Kit SOM BSP and the XSA export from step 1.
 
     ```bash
-    petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/' -p 'aarch64'
-    ```
-
-4. Create PetaLinux with the Starter Kit SOM BSP and the XSA export from step 1.
-
-    ```bash
-    petalinux-create --type project -s xilinx-k26-starterkit-v2021.1-final.bsp
-    cd xilinx-k26-starterkit-v2021.1
+    petalinux-create --type project -s xilinx-k26-som-v2021.2-final.bsp
+    cd xilinx-k26-som-2021.2
     petalinux-config --get-hw-description=<vivado_design_dir> --silent
     ```
 
-5. Add XRT to rootfs
+4. Add XRT to rootfs
 
     KV260 PetaLinux BSP doesn't enable XRT because it installs XRT with overlay. To create sysroot for application developer cross compiling, we enable XRT in the rootfs.
 
@@ -69,7 +63,7 @@ KV260 provides an off-the-shelf boot image and has its enhanced boot sequence. S
     - Enable `xrt`
     - Press Exit to exit configuration. Press Save to save the configuration.
 
-6. Build PetaLinux and generate SDK
+5. Build PetaLinux and generate SDK
 
     ```bash
     petalinux-build
@@ -86,7 +80,7 @@ Since KV260 loads PL after Linux boots up, the PL IP information in the platform
 1. It needs to have ZOCL node so that XRT driver can be loaded properly
 2. It can include any configurations of the PL IP in the platform logic designed in step 1.
 
-The device tree information for PL in your application is loaded after Linux boot together with the PL bitstream. A device tree overlay (DTBO) can be loaded and unloaded in Linux. For more information about DTBO, please refer to https://lkml.org/lkml/2012/11/5/615. 
+The device tree information for PL in your application is loaded after Linux boot together with the PL bitstream. A device tree overlay (DTBO) can be loaded and unloaded in Linux. For more information about DTBO, please refer to https://lkml.org/lkml/2012/11/5/615.
 
 Xilinx provides Device Tree Generator (DTG) to generate device tree from XSA file exported from Vivado. DTG is configurable for which information to be generated. According to our requirement, we will use these two options:
 

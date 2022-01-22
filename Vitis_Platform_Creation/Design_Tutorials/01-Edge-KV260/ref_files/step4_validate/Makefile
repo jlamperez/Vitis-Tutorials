@@ -24,15 +24,15 @@ all: platforminfo vadd_hw_package
 
 
 Vitis_Accel_Examples:
-	git clone https://github.com/Xilinx/Vitis_Accel_Examples.git
+	git clone https://github.com/Xilinx/Vitis_Accel_Examples.git $@
 
 # Quick command for generating vadd hw xclbin
 vadd_hw: $(PL_EXAMPLE_PATH)/krnl_vadd.xclbin
 
 # vadd_hw generates the files for running on hardware. User needs to pick the files required by KV260 and transfer them to the board
 # Do not use the generated sd_card.img
-$(PL_EXAMPLE_PATH)/krnl_vadd.xclbin: Vitis_Accel_Examples $(PLATFORM) 
-	$(MAKE) -C $(PL_EXAMPLE_PATH) all TARGET=hw DEVICE=$(PLATFORM) HOST_ARCH=aarch64 EDGE_COMMON_SW=$(SW_COMP) SYSROOT=$(SW_COMP)/sysroots/cortexa72-cortexa53-xilinx-linux
+$(PL_EXAMPLE_PATH)/krnl_vadd.xclbin: Vitis_Accel_Examples $(PLATFORM)
+	faketime -f "-1y" $(MAKE) -C $(PL_EXAMPLE_PATH) all TARGET=hw PLATFORM=$(PLATFORM) HOST_ARCH=aarch64 EDGE_COMMON_SW=$(SW_COMP) SYSROOT=$(SW_COMP)/sysroots/cortexa72-cortexa53-xilinx-linux
 
 # Package #1: Convert bit to bit.bin
 $(PL_EXAMPLE_PATH)/vadd.bit.bin: $(PL_EXAMPLE_PATH)/krnl_vadd.xclbin
