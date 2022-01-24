@@ -14,8 +14,8 @@
 
 ROOT_DIR=$(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 ABS_BUILD_PATH=$(ROOT_DIR)/build
-BSP=xilinx-k26-som-v2021.2-final.bsp
-PETALINUX_PROJ_NAME=xilinx-k26-som-2021.2
+BSP=xilinx-k26-starterkit-v2021.2-custom.bsp
+PETALINUX_PROJ_NAME=xilinx-k26-starterkit-2021.2
 PETALINUX_DIR=$(ABS_BUILD_PATH)/$(PETALINUX_PROJ_NAME)
 BD_TCL=system_step0.tcl
 ABS_BD_TCL=$(ROOT_DIR)/$(BD_TCL)

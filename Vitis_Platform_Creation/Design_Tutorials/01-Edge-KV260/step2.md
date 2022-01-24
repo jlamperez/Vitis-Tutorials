@@ -36,9 +36,12 @@ KV260 provides an off-the-shelf boot image and has its enhanced boot sequence. S
 
 1. Check [Kria K26 SOM wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM). Download the **Starter Kit SOM BSP** that matches your tool version under **PetaLinux Board Support Package** section.
 
-    For example, https://www.xilinx.com/member/forms/download/xef.html?filename=xilinx-k26-som-v2021.2-final.bsp
+    For example, https://www.xilinx.com/member/forms/download/xef.html?filename=xilinx-k26-starterki-v2021.1-final.bsp. This is the one for Vitis
+    2021.1 version since at the time of making this tutorial version 2021.2
+    does not exist I have created my own bsp modifying above 2021.1 version.
+    I expected to make the tutorial of how to create this bsp for 2021.2 soon.
 
-    Save it to your working directory.
+    Save it to your working directory `Vitis_Platform_Creation/Design_Tutorials/01-Edge-KV260/ref_files/step2_petalinux`.
 
 2. Setup PetaLinux environment
 
@@ -49,8 +52,8 @@ KV260 provides an off-the-shelf boot image and has its enhanced boot sequence. S
 3. Create PetaLinux with the Starter Kit SOM BSP and the XSA export from step 1.
 
     ```bash
-    petalinux-create --type project -s xilinx-k26-som-v2021.2-final.bsp
-    cd xilinx-k26-som-2021.2
+    petalinux-create --type project -s xilinx-k26-starterkit-v2021.2-custom.bsp
+    cd xilinx-k26-starterkit-2021.2
     petalinux-config --get-hw-description=<vivado_design_dir> --silent
     ```
 
