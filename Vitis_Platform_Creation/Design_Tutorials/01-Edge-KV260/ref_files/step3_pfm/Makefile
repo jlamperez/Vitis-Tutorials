@@ -14,7 +14,7 @@
 
 .PHONY: sw_comp pfm prep_sw_comp prep_sysroot all
 
-PETALINUX_PROJ_NAME=xilinx-k26-som-2021.2
+PETALINUX_PROJ_NAME=xilinx-k26-starterkit-2021.2
 XSA_NAME=kv260_custom_platform
 
 all: sw_comp pfm prep_sw_comp prep_sysroot

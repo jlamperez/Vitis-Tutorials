@@ -97,7 +97,7 @@ Run the following steps to generate DTBO from XSA
     ```bash
     git clone https://github.com/Xilinx/device-tree-xlnx
     cd device-tree-xlnx
-    git checkout xlnx_rel_v2021.1
+    git checkout xlnx_rel_v2021.2
     ```
 
 2. Generate DTS from XSA with XSCT.
