@@ -258,4 +258,39 @@ Since the PetaLinux project requires KV260 BSP, please download KV260 [Starter K
 The command line flow has slight differences comparing to Vitis IDE flow.
 - The vector addition application is called `vadd` and `binary_container_1.xclbin` in Vitis IDE flow. The generated files in command line flow are called `simple_vadd` and `krnl_vadd.xclbin`.
 
+The created image can be found in `Vitis-Tutorials/Vitis_Platform_Creation/Design_Tutorials/01-Edge-KV260/ref_files/step4_validate/Vitis_Accel_Examples/cpp_kernels/simple_vadd/package.hw/sd_card.img`.
+
+Be carefull with this image that uses `rootfs.ext4 ` as rootfs and the bsp has initramfs.
+
+For creating an image you can go to `step2_petalinux/build/xilinx-k26-starterkit-2021.2/images/linux/` and do `petalinux-package --wic --bootfiles "ramdisk.cpio.gz.u-boot boot.scr Image system.dtb"`. This will create the `petalinux-sdimage.wic`. After flashing the card you can follow the next steps:
+
+Please copy the following files from `Vitis_Accel_Examples/cpp_kernels/simple_vadd/` to `/lib/firmware/xilinx/vadd` on target board and use xmutil to load hardware.
+
+- vadd.bit.bin
+- vadd.dtbo
+- shell.json
+
+Then you need to unloadd app `sudo xmutil unloadapp` ,load vadd app `sudo xmutil loadapp vadd`. If you listapps now you need to have:
+
+```
+xilinx-k26-starterkit-2021_2:~$ sudo xmutil listapps
+                     Accelerator                            Base           Type    #slots         Active_slot
+
+                        kv260-dp                        kv260-dp       XRT_FLAT         0                  -1
+                            base                            base       XRT_FLAT         0                  -1
+                            vadd                            vadd       XRT_FLAT         0                  0,
+```
+
+If you use the `run_app.sh this will call `./simple_vadd krnl_vadd.xclbin` and if everyting is correct you should see as above:
+
+```
+xilinx-k26-starterkit-2021_2:/media/sd-mmcblk1p1/Old$ ./run_app.sh
+INFO: Reading krnl_vadd.xclbin
+Loading: 'krnl_vadd.xclbin'
+TEST PASSED
+INFO: host run completed.
+
+```
+
+
 <p class="sphinxhide" align="center"><sup>Copyright&copy; 2021 Xilinx</sup></p>
